@@ -33,6 +33,12 @@ public class SpringConfig {
         return new JdbcTemplateUserRepository(dataSource);
     }
 
+    @Bean
+    public StoreService storeService() { return new StoreService(storeRepository()); }
+
+    @Bean
+    public StoreRepository storeRepository() { return new JdbcTemplateStoreRepository(dataSource); }
+
 
 
 

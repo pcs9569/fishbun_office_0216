@@ -21,7 +21,7 @@ public class JdbcTemplateStoreRepository implements StoreRepository{
     @Override
     public Store save(Store store) {
 
-        jdbcTemplate.update("insert into store (sto_name, sto_pictre, sto_detail_option, sto_lan, sto_lon) values (?,?,?,?,?)", store.getSto_name(), store.getSto_picture(), store.getSto_detail_option(), store.getSto_lat(), store.getSto_lon());
+        jdbcTemplate.update("insert into store (sto_name, sto_picture, sto_detail_option, sto_lat, sto_lon, sto_mod_date) values (?,?,?,?,?,NOW())", store.getSto_name(), store.getSto_picture(), store.getSto_detail_option(), store.getSto_lat(), store.getSto_lon());
 
         return store;
 
@@ -36,7 +36,7 @@ public class JdbcTemplateStoreRepository implements StoreRepository{
 
     @Override
     public List<Store> findAll() {
-        return null;
+        return jdbcTemplate.query("select * from store", storeRowMapper());
     }
 
     @Override
