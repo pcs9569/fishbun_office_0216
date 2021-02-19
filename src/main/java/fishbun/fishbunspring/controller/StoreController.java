@@ -26,9 +26,6 @@ public class StoreController {
     public Store create(String sto_name, String sto_picture, String sto_detail_option, Double sto_lat, Double sto_lon){
         Store store = new Store();
 
-//        System.out.println("-----------------" + "controller" + "----------------------");
-//        System.out.println(sto_name +" "+ sto_picture +" "+ sto_detail_option +" "+ sto_lat +" "+ sto_lon);
-
         store.setSto_name(sto_name);
         store.setSto_picture(sto_picture);
         store.setSto_detail_option(sto_detail_option);
@@ -45,29 +42,63 @@ public class StoreController {
     @ResponseBody
     public List<Store> lists(){
         List<Store> store = storeService.findStore();
-//        model.addAttribute("store",store);
         return store;
 
     }
 
     @GetMapping("/{sto_id}")
     @ResponseBody
-    public Store findStore(@PathVariable String sto_id){
+    public Store findStore(@PathVariable Integer sto_id){
         Store store = storeService.findOne(sto_id);
         return store;
     }
 
 
-//
-//    @GetMapping("/{sto_id}")
-//    @ResponseBody
-//    public Store modifyStore(@PathVariable @RequestParam(required = true, value = "sto_id") String sto_id,
-//                             @RequestParam(required = false, value = "sto")
-//
-//                             )
-//
 
+    @PutMapping("/{sto_id}")
+    @ResponseBody
+    public Store modifyStore(@PathVariable Integer sto_id,
+                             @RequestParam(required = false, value = "sto_name") String sto_name,
+                             @RequestParam(required = false, value = "sto_picture") String sto_picture,
+                             @RequestParam(required = false, value = "sto_detail_option") String sto_detail_option,
+                             @RequestParam(required = false, value = "sto_lat") Double sto_lat,
+                             @RequestParam(required = false, value = "sto_lon") Double sto_lon
+                             ){
+        Store store = storeService.findOne(sto_id);
 
+        if(sto_name != null){
+            store.setSto_name(sto_name);
+        }
 
+        if(sto_picture != null){
+            store.setSto_picture(sto_picture);
+        }
+
+        if(sto_detail_option != null){
+            store.setSto_detail_option(sto_detail_option);
+        }
+
+        if(sto_lat != null){
+            store.setSto_lat(sto_lat);
+        }
+
+        if(sto_lon != null){
+            store.setSto_lon(sto_lon);
+        }
+
+        return storeService.modify(store);
+    }
+
+    @DeleteMapping("/{sto_id}")
+    @ResponseBody
+    public void delStore(@PathVariable Integer sto_id){
+        Store store = storeService.findOne(sto_id);
+        if(store != null) {
+            storeService.delete(store);
+        }else{
+            System.out.println("sto_id에 해당하는 store가 없습니다.");
+        }
+
+    }
 
 }

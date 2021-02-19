@@ -39,7 +39,11 @@ public class SpringConfig {
     @Bean
     public StoreRepository storeRepository() { return new JdbcTemplateStoreRepository(dataSource); }
 
+    @Bean
+    public ReviewService reviewService() { return new ReviewService(reviewRepository()); }
 
+    @Bean
+    public ReviewRepository reviewRepository() { return new JdbcTemplateReviewRepository(dataSource); }
 
 
 }

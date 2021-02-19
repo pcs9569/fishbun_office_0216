@@ -35,7 +35,7 @@ public class StoreService {
         return storeRepository.findAll();
     }
 
-    public Store findOne(String sto_id){
+    public Store findOne(Integer sto_id){
         return storeRepository.findById(sto_id);
     }
 

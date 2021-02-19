@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import javax.sql.DataSource;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -28,10 +29,10 @@ public class JdbcTemplateStoreRepository implements StoreRepository{
     }
 
     @Override
-    public Store findById(String sto_id) {
-        List<Store> result = jdbcTemplate.query("select * from store where sto_id = ?", storeRowMapper(), sto_id);
+    public Store findById(Integer sto_id) {
+        Store store = jdbcTemplate.queryForObject("select * from store where sto_id = ?", storeRowMapper(), sto_id);
 
-        return result.get(0);
+        return store;
     }
 
     @Override
@@ -41,12 +42,16 @@ public class JdbcTemplateStoreRepository implements StoreRepository{
 
     @Override
     public Store updateStore(Store store) {
-        return null;
+
+        jdbcTemplate.update("UPDATE store SET sto_name = ?, sto_picture = ?, sto_detail_option = ?, sto_lat = ?, sto_lon = ?, sto_mod_date=?  WHERE sto_id = ?", store.getSto_name(), store.getSto_picture(), store.getSto_detail_option(), store.getSto_lat(), store.getSto_lon(), LocalDateTime.now(), store.getSto_id());
+
+        return store;
     }
 
     @Override
     public void deleteStore(Store store) {
-
+        int result = jdbcTemplate.update("DELETE FROM store WHERE sto_id = ?", store.getSto_id());
+        System.out.println(result+"개 행 삭제 성공");
     }
 
     private RowMapper<Store> storeRowMapper(){

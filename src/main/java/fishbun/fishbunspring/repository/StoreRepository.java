@@ -7,7 +7,7 @@ import java.util.List;
 public interface StoreRepository {
     Store save(Store store);
 
-    Store findById(String sto_id);
+    Store findById(Integer sto_id);
 
     List<Store> findAll();
     Store updateStore(Store store);
