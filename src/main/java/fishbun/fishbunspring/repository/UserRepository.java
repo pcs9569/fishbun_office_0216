@@ -9,11 +9,11 @@ import java.util.Optional;
 
 public interface UserRepository {
 
-    User save(User user);
+    User insert(User user);
     //    Optional<User> findByEmail(String u_email);
-    User findByEmail(String u_email);
+    User selectByEmail(String u_email);
     //    Optional<User> findByName(String u_name);
-    List<User> findAll();
+    List<User> selectAll();
     User updateUser(User user);
 
     void deleteUser(User user);

@@ -17,8 +17,8 @@ public class StoreService {
         this.storeRepository = storeRepository;
     }
 
-    public Store join(Store store){
-        storeRepository.save(store);
+    public Store save(Store store){
+        storeRepository.insert(store);
         return store;
     }
 
@@ -27,16 +27,16 @@ public class StoreService {
         return store;
     }
 
-    public void delete(Store store){
+    public void remove(Store store){
         storeRepository.deleteStore(store);
     }
 
-    public List<Store> findStore(){
-        return storeRepository.findAll();
+    public List<Store> findAll(){
+        return storeRepository.selectAll();
     }
 
-    public Store findOne(Integer sto_id){
-        return storeRepository.findById(sto_id);
+    public Store findById(Integer sto_id){
+        return storeRepository.selectById(sto_id);
     }
 
 

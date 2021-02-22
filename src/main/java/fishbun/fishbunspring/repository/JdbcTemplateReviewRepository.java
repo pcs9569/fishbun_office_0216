@@ -15,7 +15,7 @@ public class JdbcTemplateReviewRepository implements ReviewRepository{
 
 
     @Override
-    public Review save(Review review, Integer sto_id, String u_email) {
+    public Review insert(Review review, Integer sto_id, String u_email) {
 
         jdbcTemplate.update("insert into review (sto_id, u_email, rev_content, rev_mod_date) values (?,?,?,NOW())", sto_id, u_email, review.getRev_content());
 
@@ -23,12 +23,12 @@ public class JdbcTemplateReviewRepository implements ReviewRepository{
     }
 
     @Override
-    public Review findById(Integer rev_id) {
+    public Review selectById(Integer rev_id) {
         return null;
     }
 
     @Override
-    public List<Review> findAll() {
+    public List<Review> selectAll() {
         return null;
     }
 

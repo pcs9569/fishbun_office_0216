@@ -16,8 +16,8 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User join(User user){
-        userRepository.save(user);
+    public User save(User user){
+        userRepository.insert(user);
         System.out.println("--------------------" + "service" + "-------------------------------");
         System.out.println(user.getU_email());
         System.out.println(user.getU_name());
@@ -27,7 +27,6 @@ public class UserService {
     }
 
     public User modify(User user){
-        //userRepository.findByEmail(user.getU_email());
         userRepository.updateUser(user);
 
         System.out.println("--------------------" + "service" + "-------------------------------");
@@ -39,14 +38,14 @@ public class UserService {
         return user;
     }
 
-    public void delete(User user){
+    public void remove(User user){
         userRepository.deleteUser(user);
     }
 
-    public List<User> findUsers() {
-        return userRepository.findAll();
+    public List<User> findAll() {
+        return userRepository.selectAll();
     }
-    public User findOne(String u_email) {
-        return userRepository.findByEmail(u_email);
+    public User findByEmail(String u_email) {
+        return userRepository.selectByEmail(u_email);
     }
 }

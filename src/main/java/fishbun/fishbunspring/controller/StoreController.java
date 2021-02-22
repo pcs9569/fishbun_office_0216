@@ -32,7 +32,7 @@ public class StoreController {
         store.setSto_lat(sto_lat);
         store.setSto_lon(sto_lon);
 
-        storeService.join(store);
+        storeService.save(store);
 
         return store;
 
@@ -41,15 +41,15 @@ public class StoreController {
     @GetMapping("")
     @ResponseBody
     public List<Store> lists(){
-        List<Store> store = storeService.findStore();
+        List<Store> store = storeService.findAll();
         return store;
 
     }
 
     @GetMapping("/{sto_id}")
     @ResponseBody
-    public Store findStore(@PathVariable Integer sto_id){
-        Store store = storeService.findOne(sto_id);
+    public Store listStore(@PathVariable Integer sto_id){
+        Store store = storeService.findById(sto_id);
         return store;
     }
 
@@ -57,14 +57,14 @@ public class StoreController {
 
     @PutMapping("/{sto_id}")
     @ResponseBody
-    public Store modifyStore(@PathVariable Integer sto_id,
+    public Store changeStore(@PathVariable Integer sto_id,
                              @RequestParam(required = false, value = "sto_name") String sto_name,
                              @RequestParam(required = false, value = "sto_picture") String sto_picture,
                              @RequestParam(required = false, value = "sto_detail_option") String sto_detail_option,
                              @RequestParam(required = false, value = "sto_lat") Double sto_lat,
                              @RequestParam(required = false, value = "sto_lon") Double sto_lon
                              ){
-        Store store = storeService.findOne(sto_id);
+        Store store = storeService.findById(sto_id);
 
         if(sto_name != null){
             store.setSto_name(sto_name);
@@ -91,10 +91,10 @@ public class StoreController {
 
     @DeleteMapping("/{sto_id}")
     @ResponseBody
-    public void delStore(@PathVariable Integer sto_id){
-        Store store = storeService.findOne(sto_id);
+    public void eraseStore(@PathVariable Integer sto_id){
+        Store store = storeService.findById(sto_id);
         if(store != null) {
-            storeService.delete(store);
+            storeService.remove(store);
         }else{
             System.out.println("sto_id에 해당하는 store가 없습니다.");
         }

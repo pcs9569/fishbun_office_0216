@@ -60,7 +60,7 @@ public class UserController {
         user.setU_pw(u_pw);
         user.setU_name(u_name);
 
-        userService.join(user);
+        userService.save(user);
 
         return user;
     }
@@ -68,7 +68,7 @@ public class UserController {
     @GetMapping("")
     @ResponseBody
     public List<User> lists(Model model){
-        List<User> user = userService.findUsers();
+        List<User> user = userService.findAll();
         model.addAttribute("users",user);
         return user;
     }
@@ -81,14 +81,14 @@ public class UserController {
 //    }
     @GetMapping("/{u_email}")
     @ResponseBody
-    public User findUser(@PathVariable String u_email){
+    public User listUser(@PathVariable String u_email){
 
-        return userService.findOne(u_email);
+        return userService.findByEmail(u_email);
     }
 
     @PutMapping("/{u_email}")
     @ResponseBody
-    public User modifyUser(@PathVariable @RequestParam(required = true, value = "u_email") String u_email,
+    public User changeUser(@PathVariable @RequestParam(required = true, value = "u_email") String u_email,
                            @RequestParam(required = false, value = "u_pw") String u_pw,
                            @RequestParam(required = false, value = "u_name") String u_name,
                            @RequestParam(required = false, value = "u_level") Integer u_level
@@ -101,7 +101,7 @@ public class UserController {
 
 
 //        Optional<User> user1 = userService.findOne(u_email);
-        User user = userService.findOne(u_email);
+        User user = userService.findByEmail(u_email);
 
         user.setU_email(u_email);
 
@@ -123,10 +123,10 @@ public class UserController {
 
     @DeleteMapping("/{u_email}")
     @ResponseBody
-    public void delUser(@PathVariable String u_email){
-        User user = userService.findOne(u_email);
+    public void eraseUser(@PathVariable String u_email){
+        User user = userService.findByEmail(u_email);
 
-        userService.delete(user);
+        userService.remove(user);
 
     }
 

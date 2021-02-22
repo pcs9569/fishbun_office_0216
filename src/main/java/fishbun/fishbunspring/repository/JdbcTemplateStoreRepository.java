@@ -20,7 +20,7 @@ public class JdbcTemplateStoreRepository implements StoreRepository{
 
 
     @Override
-    public Store save(Store store) {
+    public Store insert(Store store) {
 
         jdbcTemplate.update("insert into store (sto_name, sto_picture, sto_detail_option, sto_lat, sto_lon, sto_mod_date) values (?,?,?,?,?,NOW())", store.getSto_name(), store.getSto_picture(), store.getSto_detail_option(), store.getSto_lat(), store.getSto_lon());
 
@@ -29,14 +29,14 @@ public class JdbcTemplateStoreRepository implements StoreRepository{
     }
 
     @Override
-    public Store findById(Integer sto_id) {
+    public Store selectById(Integer sto_id) {
         Store store = jdbcTemplate.queryForObject("select * from store where sto_id = ?", storeRowMapper(), sto_id);
 
         return store;
     }
 
     @Override
-    public List<Store> findAll() {
+    public List<Store> selectAll() {
         return jdbcTemplate.query("select * from store", storeRowMapper());
     }
 

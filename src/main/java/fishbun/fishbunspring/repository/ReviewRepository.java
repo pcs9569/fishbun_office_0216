@@ -5,11 +5,11 @@ import fishbun.fishbunspring.domain.Review;
 import java.util.List;
 
 public interface ReviewRepository {
-    Review save(Review review, Integer sto_id, String u_email);
+    Review insert(Review review, Integer sto_id, String u_email);
 
-    Review findById(Integer rev_id);
+    Review selectById(Integer rev_id);
 
-    List<Review> findAll();
+    List<Review> selectAll();
 
     Review updateReview(Review review);
 

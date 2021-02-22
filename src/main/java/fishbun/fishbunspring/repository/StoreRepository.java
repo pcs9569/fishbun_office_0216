@@ -5,11 +5,11 @@ import fishbun.fishbunspring.domain.Store;
 import java.util.List;
 
 public interface StoreRepository {
-    Store save(Store store);
+    Store insert(Store store);
 
-    Store findById(Integer sto_id);
+    Store selectById(Integer sto_id);
 
-    List<Store> findAll();
+    List<Store> selectAll();
     Store updateStore(Store store);
 
     void deleteStore(Store store);

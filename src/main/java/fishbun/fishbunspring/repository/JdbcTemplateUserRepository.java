@@ -40,7 +40,7 @@ public class JdbcTemplateUserRepository implements UserRepository{
         }
     */
     @Override
-    public User save(User user) {
+    public User insert(User user) {
         //SimpleJdbcInsert jdbcInsert = new SimpleJdbcInsert(jdbcTemplate);
 
         System.out.println("--------------------" + "repository" + "-------------------------------");
@@ -55,7 +55,7 @@ public class JdbcTemplateUserRepository implements UserRepository{
     }
 
     @Override
-    public User findByEmail(String u_email) {
+    public User selectByEmail(String u_email) {
         List<User> result = jdbcTemplate.query("select * from user where u_email = ?", userRowMapper(), u_email);
 //        return result.stream().findAny();
         return result.get(0);
@@ -79,7 +79,7 @@ public class JdbcTemplateUserRepository implements UserRepository{
     }
 
     @Override
-    public List<User> findAll() {
+    public List<User> selectAll() {
         return jdbcTemplate.query("select * from user", userRowMapper());
     }
 
