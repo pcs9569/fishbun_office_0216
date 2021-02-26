@@ -5,7 +5,7 @@ import fishbun.fishbunspring.domain.Review;
 import java.util.List;
 
 public interface ReviewRepository {
-    Review insert(Review review, Integer sto_id, String u_email);
+    Review insert(Review review);
 
     Review selectById(Integer rev_id);
 

@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/api/store")
+@RequestMapping("/api/stores")
 public class StoreController {
 
     private final StoreService storeService;
@@ -21,7 +21,7 @@ public class StoreController {
         this.storeService = storeService;
     }
 
-    @PostMapping("/new")
+    @PostMapping("")
     @ResponseBody
     public Store create(String sto_name, String sto_picture, String sto_detail_option, Double sto_lat, Double sto_lon){
         Store store = new Store();
@@ -91,7 +91,7 @@ public class StoreController {
 
     @DeleteMapping("/{sto_id}")
     @ResponseBody
-    public void eraseStore(@PathVariable Integer sto_id){
+    public void destroyStore(@PathVariable Integer sto_id){
         Store store = storeService.findById(sto_id);
         if(store != null) {
             storeService.remove(store);

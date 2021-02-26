@@ -43,7 +43,7 @@ public class JdbcTemplateStoreRepository implements StoreRepository{
     @Override
     public Store updateStore(Store store) {
 
-        jdbcTemplate.update("UPDATE store SET sto_name = ?, sto_picture = ?, sto_detail_option = ?, sto_lat = ?, sto_lon = ?, sto_mod_date=?  WHERE sto_id = ?", store.getSto_name(), store.getSto_picture(), store.getSto_detail_option(), store.getSto_lat(), store.getSto_lon(), LocalDateTime.now(), store.getSto_id());
+        jdbcTemplate.update("UPDATE store SET sto_name = ?, sto_picture = ?, sto_detail_option = ?, sto_lat = ?, sto_lon = ?, sto_mod_date=NOW()  WHERE sto_id = ?", store.getSto_name(), store.getSto_picture(), store.getSto_detail_option(), store.getSto_lat(), store.getSto_lon(), store.getSto_id());
 
         return store;
     }

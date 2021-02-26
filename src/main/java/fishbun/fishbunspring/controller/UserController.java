@@ -46,7 +46,7 @@ public class UserController {
     }*/
 
 
-    @PostMapping("/new")
+    @PostMapping("")
     @ResponseBody
     public User create(String u_email, String u_pw, String u_name) {
         System.out.println("-----------------" + "controller" + "----------------------");
@@ -123,7 +123,7 @@ public class UserController {
 
     @DeleteMapping("/{u_email}")
     @ResponseBody
-    public void eraseUser(@PathVariable String u_email){
+    public void destroyUser(@PathVariable String u_email){
         User user = userService.findByEmail(u_email);
 
         userService.remove(user);
