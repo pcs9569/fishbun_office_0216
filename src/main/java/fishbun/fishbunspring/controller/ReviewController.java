@@ -65,7 +65,7 @@ public class ReviewController {
     //Delete
     @DeleteMapping("/{rev_id}")
     @ResponseBody
-    public void destoryReview(@PathVariable Integer rev_id){
+    public void destroyReview(@PathVariable Integer rev_id){
         Review review = reviewService.findById(rev_id);
         if(review != null){
             reviewService.remove(review);

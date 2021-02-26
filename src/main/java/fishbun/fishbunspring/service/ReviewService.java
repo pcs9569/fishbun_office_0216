@@ -23,7 +23,7 @@ public class ReviewService {
     }
 
     public void remove(Review review){
-        reviewRepository.updateReview(review);
+        reviewRepository.deleteReview(review);
     }
 
     public List<Review> findAll(){
