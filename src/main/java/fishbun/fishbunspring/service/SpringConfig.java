@@ -45,5 +45,29 @@ public class SpringConfig {
     @Bean
     public ReviewRepository reviewRepository() { return new JdbcTemplateReviewRepository(dataSource); }
 
+    @Bean
+    public KindService kindService() { return new KindService(kindRepository()); }
+
+    @Bean
+    public KindRepository kindRepository() { return new JdbcTemplateKindRepository(dataSource); }
+
+    @Bean
+    public NotifyService notifyService() { return new NotifyService(notifyRepository()); }
+
+    @Bean
+    public NotifyRepository notifyRepository() { return new JdbcTemplateNotifyRepository(dataSource);}
+
+    @Bean
+    public LikesService likesService() { return new LikesService(likesRepository());}
+
+    @Bean
+    public LikesRepository likesRepository() { return new JdbcTemplateLikesRepository(dataSource);}
+
+    @Bean
+    public StarService starService() { return new StarService(starRepository());}
+
+    @Bean
+    public StarRepository starRepository() { return new JdbcTemplateStarRepository(dataSource);}
+
 
 }

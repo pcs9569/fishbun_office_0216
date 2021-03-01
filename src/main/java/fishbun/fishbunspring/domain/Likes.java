@@ -4,7 +4,7 @@ public class Likes {
     private Integer likes_id;
     private Integer sto_id;
     private String u_email;
-    private Integer likes;
+    private Integer likes_press;
 
     public Integer getLikes_id() {
         return likes_id;
@@ -30,12 +30,12 @@ public class Likes {
         this.u_email = u_email;
     }
 
-    public Integer getLikes() {
-        return likes;
+    public Integer getLikes_press() {
+        return likes_press;
     }
 
-    public void setLikes(Integer likes) {
-        this.likes = likes;
+    public void setLikes_press(Integer likes_press) {
+        this.likes_press = likes_press;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class Likes {
                 "likes_id=" + likes_id +
                 ", sto_id=" + sto_id +
                 ", u_email='" + u_email + '\'' +
-                ", likes=" + likes +
+                ", likes_press=" + likes_press +
                 '}';
     }
 }
